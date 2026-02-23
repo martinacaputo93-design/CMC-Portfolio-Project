@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html class="dark" lang="it">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="description" content="Contattami - Martina Caputo, UX/UI Designer.">
+    <meta name="author" content="Martina Caputo">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Contatti | Martina Caputo - UX/UI Designer">
+    <meta property="og:description" content="Contattami per collaborazioni e progetti di design.">
+    <meta property="og:image" content="images/logo-cmc.svg">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/logo-cmc.svg">
+    
+    <title>Contatti | Martina Caputo - UX/UI Designer</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <style>
+        /* Page specific styles */
+        .main-content {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 120px 1.5rem 3rem;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .page-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .page-header p {
+            color: var(--color-text-muted);
+            font-size: 1.1rem;
+        }
+        
+        .page-header .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+            margin: 1rem auto;
+            border-radius: var(--radius-full);
+        }
+        
+        /* Contact Cards */
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        @media (max-width: 500px) {
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .contact-card {
+            background: var(--color-card-dark);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            transition: var(--transition-normal);
+        }
+        
+        .contact-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(205, 167, 65, 0.1);
+        }
+        
+        .contact-card .icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(205, 167, 65, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: var(--transition-normal);
+        }
+        
+        .contact-card:hover .icon-wrapper {
+            background: var(--color-primary);
+        }
+        
+        .contact-card:hover .icon-wrapper i {
+            color: var(--color-bg-dark) !important;
+        }
+        
+        .contact-card .icon-wrapper i {
+            font-size: 1.3rem;
+            transition: var(--transition-normal);
+        }
+        
+        .contact-card .info h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--color-primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-card .info p {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+        
+        /* Contact Form */
+        .contact-form-wrapper {
+            background: var(--color-card-dark);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+        }
+        
+        .contact-form-wrapper h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: var(--color-bg-dark);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            color: var(--color-text);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition-normal);
+        }
+        
+        .form-input::placeholder {
+            color: var(--color-text-subtle);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(205, 167, 65, 0.1);
+        }
+        
+        .form-input:hover {
+            border-color: var(--color-border-hover);
+        }
+        
+        select.form-input {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23cda741' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+        
+        select.form-input option {
+            background: var(--color-bg-dark);
+            color: var(--color-text);
+        }
+        
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--color-primary);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .checkbox-group label {
+            color: var(--color-text-subtle);
+            font-size: 0.8rem;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: var(--color-bg-dark);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: var(--transition-normal);
+            box-shadow: 0 4px 15px rgba(205, 167, 65, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(205, 167, 65, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .submit-btn i {
+            color: var(--color-bg-dark) !important;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(205, 167, 65, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            animation: scaleIn 0.5s ease;
+        }
+        
+        .success-icon i {
+            font-size: 2rem;
+        }
+        
+        .success-message h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--color-primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .success-message p {
+            color: var(--color-text-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="header-logo" aria-label="CMC Home">
+            <img src="images/logo-cmc.svg" alt="CMC Logo" width="120" height="40">
+        </a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    
+    <!-- MOBILE MENU -->
+    <nav class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Menu principale">
+        <a href="index.html">Home</a>
+        <a href="chi-sono.html">Chi Sono</a>
+        <a href="progetti.html">Progetti</a>
+        <a href="cv.html">Curriculum</a>
+        <a href="contatti.html" class="active">Contatti</a>
+    </nav>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Page Header -->
+        <div class="page-header reveal">
+            <h1>Contattami</h1>
+            <div class="divider"></div>
+            <p>Hai un progetto in mente? Parliamone!</p>
+        </div>
+        
+        <!-- Contact Cards -->
+        <div class="contact-cards reveal">
+            <div class="contact-card">
+                <div class="icon-wrapper">
+                    <i class="bi bi-envelope"></i>
+                </div>
+                <div class="info">
+                    <h3>Email</h3>
+                    <p>martina.caputo@email.com</p>
+                </div>
+            </div>
+            
+            <a href="https://www.linkedin.com/in/martina-caputo-44a073233" target="_blank" rel="noopener noreferrer" class="contact-card">
+                <div class="icon-wrapper">
+                    <i class="bi bi-linkedin"></i>
+                </div>
+                <div class="info">
+                    <h3>LinkedIn</h3>
+                    <p>Martina Caputo</p>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper reveal">
+            <h2>Inviami un messaggio</h2>
+            
+            <form id="contactForm">
+                <!-- Nome -->
+                <div class="form-group">
+                    <label for="nome">Nome *</label>
+                    <input 
+                        type="text" 
+                        id="nome" 
+                        name="nome" 
+                        required 
+                        class="form-input"
+                        placeholder="Il tuo nome"
+                       
+                    >
+                </div>
+                
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        class="form-input"
+                        placeholder="La tua email"
+                       
+                    >
+                </div>
+                
+                <!-- Oggetto -->
+                <div class="form-group">
+                    <label for="oggetto">Oggetto *</label>
+                    <select 
+                        id="oggetto" 
+                        name="oggetto" 
+                        required 
+                        class="form-input"
+                       
+                    >
+                        <option value="">Seleziona un argomento</option>
+                        <option value="collaborazione">Proposta di collaborazione</option>
+                        <option value="progetto">Nuovo progetto</option>
+                        <option value="info">Richiesta informazioni</option>
+                        <option value="altro">Altro</option>
+                    </select>
+                </div>
+                
+                <!-- Messaggio -->
+                <div class="form-group">
+                    <label for="messaggio">Messaggio *</label>
+                    <textarea 
+                        id="messaggio" 
+                        name="messaggio" 
+                        required 
+                        class="form-input"
+                        placeholder="Scrivi il tuo messaggio..."
+                       
+                    ></textarea>
+                </div>
+                
+                <!-- Privacy -->
+                <div class="checkbox-group">
+                    <input 
+                        type="checkbox" 
+                        id="privacy" 
+                        name="privacy" 
+                        required
+                       
+                    >
+                    <label for="privacy">
+                        Acconsento al trattamento dei miei dati personali ai sensi del GDPR per essere ricontattato. *
+                    </label>
+                </div>
+                
+                <!-- Submit -->
+                <button type="submit" class="submit-btn ripple">
+                    <i class="bi bi-send"></i>
+                    Invia Messaggio
+                </button>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message">
+                <div class="success-icon">
+                    <i class="bi bi-check-lg"></i>
+                </div>
+                <h3>Messaggio Inviato!</h3>
+                <p>Grazie per avermi contattato. Ti risponderò il prima possibile.</p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h5>Navigazione</h5>
+                <a href="index.html">Home</a>
+                <a href="chi-sono.html">Chi Sono</a>
+                <a href="progetti.html">Progetti</a>
+                <a href="cv.html">Curriculum</a>
+                <a href="contatti.html">Contatti</a>
+            </div>
+            <div class="footer-section">
+                <h5>Legale</h5>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+                <a href="#">Termini e Condizioni</a>
+                <a href="#">GDPR</a>
+            </div>
+            <div class="footer-section">
+                <h5>Contatti</h5>
+                <p>martina.caputo@email.com</p>
+                <p>Italia</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/martina-caputo-44a073233" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/martinacaputo93-design/CMC" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Martina Caputo - CMC. Tutti i diritti riservati.</p>
+            <div>
+                <a href="#">Privacy</a>
+                <a href="#">Cookie</a>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner GDPR -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p>Questo sito utilizza cookie tecnici per migliorare la tua esperienza di navigazione. Continuando a navigare, accetti l'utilizzo dei cookie. <a href="#">Maggiori informazioni</a></p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-btn-reject" id="cookieReject">Rifiuta</button>
+                <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accetta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

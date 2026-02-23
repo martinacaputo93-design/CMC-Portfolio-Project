@@ -1,0 +1,473 @@
+/* 
+   Animazioni CSS - CMC Portfolio
+    */
+
+/* Magnetic Button Effect */
+.magnetic-btn {
+    transition: transform 0.2s ease;
+}
+
+/* Cursor Follower */
+.cursor-follower {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease, opacity 0.3s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-follower.active {
+    transform: scale(2);
+    opacity: 0.5;
+}
+
+/* Glitch Text Effect */
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--color-primary);
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--color-primary), 2px 2px var(--color-primary);
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip: rect(132px, 9999px, 21px, 0); }
+    20% { clip: rect(47px, 9999px, 102px, 0); }
+    40% { clip: rect(94px, 9999px, 53px, 0); }
+    60% { clip: rect(23px, 9999px, 78px, 0); }
+    80% { clip: rect(61px, 9999px, 45px, 0); }
+    100% { clip: rect(12px, 9999px, 89px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip: rect(65px, 9999px, 119px, 0); }
+    20% { clip: rect(24px, 9999px, 87px, 0); }
+    40% { clip: rect(102px, 9999px, 33px, 0); }
+    60% { clip: rect(73px, 9999px, 144px, 0); }
+    80% { clip: rect(8px, 9999px, 56px, 0); }
+    100% { clip: rect(91px, 9999px, 111px, 0); }
+}
+
+/* Gradient Text Animation */
+.gradient-text {
+    background: linear-gradient(
+        90deg,
+        var(--color-primary) 0%,
+        #fff 25%,
+        var(--color-primary) 50%,
+        #fff 75%,
+        var(--color-primary) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s linear infinite;
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Floating Particles */
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float-particle 15s infinite;
+}
+
+@keyframes float-particle {
+    0%, 100% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-10vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Ripple Effect */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(205, 167, 65, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+}
+
+.ripple:active::after {
+    animation: ripple-effect 0.6s ease-out;
+}
+
+@keyframes ripple-effect {
+    to {
+        transform: translate(-50%, -50%) scale(40);
+        opacity: 0;
+    }
+}
+
+/* Card 3D Tilt Effect */
+.tilt-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.tilt-card:hover {
+    transform: rotateX(5deg) rotateY(5deg);
+}
+
+/* Underline Animation */
+.animated-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.animated-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+}
+
+.animated-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake:hover {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.bounce {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+/* Spin Animation */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.spin {
+    animation: spin 2s linear infinite;
+}
+
+/* Fade Slide Variants */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeSlideLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeSlideRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fade-slide-up {
+    animation: fadeSlideUp 0.6s ease forwards;
+}
+
+.fade-slide-down {
+    animation: fadeSlideDown 0.6s ease forwards;
+}
+
+.fade-slide-left {
+    animation: fadeSlideLeft 0.6s ease forwards;
+}
+
+.fade-slide-right {
+    animation: fadeSlideRight 0.6s ease forwards;
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.scale-in {
+    animation: scaleIn 0.5s ease forwards;
+}
+
+/* Text Typing Effect */
+.typing {
+    overflow: hidden;
+    border-right: 2px solid var(--color-primary);
+    white-space: nowrap;
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--color-primary); }
+}
+
+/* Morphing Shape */
+.morph {
+    animation: morph 8s ease-in-out infinite;
+}
+
+@keyframes morph {
+    0%, 100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+}
+
+/* Glow Pulse */
+.glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--color-primary-glow),
+                    0 0 10px var(--color-primary-glow),
+                    0 0 15px var(--color-primary-glow);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--color-primary-glow),
+                    0 0 20px var(--color-primary-glow),
+                    0 0 30px var(--color-primary-glow);
+    }
+}
+
+/* Neon Flicker */
+.neon-flicker {
+    animation: neon-flicker 1.5s infinite alternate;
+}
+
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow:
+            0 0 4px var(--color-primary),
+            0 0 11px var(--color-primary),
+            0 0 19px var(--color-primary),
+            0 0 40px var(--color-primary);
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}
+
+/* Progress Bar Animation */
+.progress-bar {
+    width: 0;
+    animation: progress 1.5s ease forwards;
+}
+
+@keyframes progress {
+    to { width: var(--progress, 100%); }
+}
+
+/* Stagger Children */
+.stagger-children > * {
+    opacity: 0;
+    animation: fadeSlideUp 0.6s ease forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.7s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.8s; }
+
+/* Smooth Counter */
+@property --num {
+    syntax: '<integer>';
+    initial-value: 0;
+    inherits: false;
+}
+
+.counter {
+    counter-reset: num var(--num);
+    animation: counter 3s ease-out forwards;
+}
+
+.counter::after {
+    content: counter(num);
+}
+
+@keyframes counter {
+    to { --num: var(--target, 100); }
+}
+
+/* Wave Text Animation */
+.wave-text span {
+    display: inline-block;
+    animation: wave 1s ease-in-out infinite;
+}
+
+.wave-text span:nth-child(1) { animation-delay: 0.0s; }
+.wave-text span:nth-child(2) { animation-delay: 0.1s; }
+.wave-text span:nth-child(3) { animation-delay: 0.2s; }
+.wave-text span:nth-child(4) { animation-delay: 0.3s; }
+.wave-text span:nth-child(5) { animation-delay: 0.4s; }
+.wave-text span:nth-child(6) { animation-delay: 0.5s; }
+.wave-text span:nth-child(7) { animation-delay: 0.6s; }
+
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Reveal on scroll - intersection observer ready */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-reveal="left"] {
+    transform: translateX(-30px);
+}
+
+[data-reveal="left"].revealed {
+    transform: translateX(0);
+}
+
+[data-reveal="right"] {
+    transform: translateX(30px);
+}
+
+[data-reveal="right"].revealed {
+    transform: translateX(0);
+}
+
+[data-reveal="scale"] {
+    transform: scale(0.9);
+}
+
+[data-reveal="scale"].revealed {
+    transform: scale(1);
+}
